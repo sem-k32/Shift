@@ -8,12 +8,15 @@ Lesson::Lesson(QString teacher, QString lesson_name, QString lesson_type,
 {
     isActive = 0;
 
+    setAutoFillBackground(true);
+    setSizePolicy(QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed));
     setWindowFlags(Qt::SplashScreen);                                   // для того, чтобы виджет не имел стандарной рамки оккошка
 
-    setMaximumSize(1000, 50);
+    resize(1000, 80);
+    setMaximumSize(1000, 80);
 
-    QPalette pal;
-    pal.setBrush(QPalette::Window,QBrush(lesson_background_color()));
+    QPalette pal = this->palette();
+    pal.setBrush(this->backgroundRole(),QBrush(lesson_background_color()));
 
     setPalette(pal);
 }
@@ -22,25 +25,14 @@ void Lesson::paintEvent(QPaintEvent *ev)
 {
     QPainter p(this);
 
-    QFontMetrics m1(QFont("Franklin Gothic Book", 30));
-    QFontMetrics m2(QFont("Trebuchet MS", 24));                                 // берём длину и ширину  итоговой строки
-
-    int text_height = m1.height();
-    int text_width = m1.width(lesson_name + " ") + m2.width("(" + teacher + " " + audience + ")");
-
     p.setFont(QFont("Franklin Gothic Book", 30));
 
-    int x_draw_lesson_name = this->width() / 2 - text_width / 2;
-    int y_draw_lesson_name = this->height() / 2 + text_height / 2;
-
-    p.drawText(x_draw_lesson_name, y_draw_lesson_name, lesson_name + " ");
+    p.drawText(QRect(0,0,this->width() / 2, this->height()), Qt::AlignRight | Qt::AlignVCenter, lesson_name + " ");
 
     p.setFont(QFont("Trebuchet MS", 24));
 
-    int x_draw_add_info = x_draw_lesson_name + m1.width(lesson_name + " ");
-    int y_draw_add_info = y_draw_lesson_name;
-
-    p.drawText(x_draw_add_info, y_draw_add_info, "(" + teacher + " " + audience + ")");
+    p.drawText(QRect(this->width() / 2,0,this->width() / 2, this->height()),Qt::AlignVCenter | Qt::AlignLeft,
+                                                                            "(" + teacher + ", " + audience + ")");
 }
 
 QSize Lesson::sizeHint() const
@@ -48,15 +40,9 @@ QSize Lesson::sizeHint() const
     QFontMetrics m1(QFont("Franklin Gothic Book", 30));
     QFontMetrics m2(QFont("Trebuchet MS", 24));
 
-    int text_height = m1.height();
     int text_width = m1.width(lesson_name + " ") + m2.width("(" + teacher + " " + audience + ")");
 
-    return QSize(text_width, text_height);
-}
-
-QSizePolicy Lesson::sizePolicy() const
-{
-    return QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    return QSize(1.2*text_width, 80);
 }
 
 void Lesson::mousePressEvent(QMouseEvent *ev)
@@ -65,14 +51,14 @@ void Lesson::mousePressEvent(QMouseEvent *ev)
     {
         isActive = 1;
 
-        this->setStyleSheet("QWidget {border-width: 3px;border-color: red}");
+        this->setStyleSheet("QFrame {border-width: 3px;border-color: red}");
 
         emit clicked(isActive);
     }
     else {                                          // была активна
         isActive = 0;
 
-        this->setStyleSheet("QWidget {border-width: 0px;}");
+        this->setStyleSheet("QFrame {border-width: 0px;}");
 
         emit clicked(isActive);
     }
@@ -103,45 +89,43 @@ Time_of_the_Lesson::Time_of_the_Lesson(int day, int number,QWidget *parent) : QW
     this->day_of_the_week = day;
     this->number_of_lesson = number;
 
+    setAutoFillBackground(true);
     setWindowFlags(Qt::SplashScreen);
+    setSizePolicy(QSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred));
 
-    setMaximumSize(150, 55);
+    resize(280, 80);
+    setMaximumSize(280, 80);
 
-    QPalette pal;
-    pal.setBrush(QPalette::Base, QBrush(QColor(204, 205, 204)));
+    QPalette pal = this->palette();
+    pal.setBrush(this->backgroundRole(), QBrush(QColor(204, 205, 204)));
 
     setPalette(pal);
 }
 
-QSizePolicy Time_of_the_Lesson::sizePolicy() const
-{
-    return QSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
-}
-
 QSize Time_of_the_Lesson::sizeHint() const
 {
-    QFontMetrics metrics(QFont("Lucida Console", 18));
+    QFontMetrics metrics(QFont("Lucida Console", 20));
 
-    return QSize(1.2 * metrics.width("10:10 - 10:10"),1.2 * metrics.height());
+    return QSize(1.2 * metrics.width("10:10 - 10:10"), 80);
 }
 
 QString Time_of_the_Lesson::get_time_bounds() const
 {
     switch (number_of_lesson) {
     case 0:
-        return QString("9:00 - 10:25");
+        return QString("9:00-10:25");
     case 1:
-        return QString("10:45 - 12:10");
+        return QString("10:45-12:10");
     case 2:
-        return QString("12:20 - 13:45");
+        return QString("12:20-13:45");
     case 3:
-        return QString("13:55 - 15:20");
+        return QString("13:55-15:20");
     case 4:
-        return QString("15:30 - 16:55");
+        return QString("15:30-16:55");
     case 5:
-        return QString("17:05 - 18:30");
+        return QString("17:05-18:30");
     case 6:
-        return QString("18:35 - 20:00");
+        return QString("18:35-20:00");
     default:
         break;
     }
@@ -151,11 +135,11 @@ void Time_of_the_Lesson::paintEvent(QPaintEvent *ev)
 {
     QPainter p(this);
 
-    QFont f = QFont("Lucida Console", 18);
+    QFont f = QFont("Lucida Console", 20);
 
     p.setFont(f);
 
-    QRect widget_rect = this->rect();
+    QRect widget_rect = QRect(0, 0, this->width(), this->height() + 5);
 
-    p.drawText(widget_rect, Qt::AlignCenter, get_time_bounds());
+    p.drawText(widget_rect, Qt::AlignVCenter | Qt::AlignHCenter, get_time_bounds());
 }

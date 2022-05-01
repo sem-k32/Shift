@@ -1,5 +1,4 @@
-#include "widget.h"
-#include "header.h"
+#include "lesson.h"
 
 #include <QApplication>
 
@@ -11,11 +10,12 @@ int main(int argc, char *argv[])
 
     QWidget w;
     QHBoxLayout* lay = new QHBoxLayout();
-    Program_name_widget* pr_name = new Program_name_widget();
-    Back_button* b_b = new Back_button();
+    Lesson* l = new Lesson("Efanov","Informatics","sem","322 ЛК");
+    Time_of_the_Lesson* t = new Time_of_the_Lesson(1,1);
 
-    lay->addWidget(b_b);
-    lay->addWidget(pr_name);
+    lay->addWidget(t);
+    lay->addWidget(l);
+
     w.setLayout(lay);
 
     w.show();
