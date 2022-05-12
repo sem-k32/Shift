@@ -6,7 +6,7 @@
 #include <QVBoxLayout>
 #include <QPainter>
 
-class Back_button : public QWidget
+class Back_button : public QWidget                              // кнопка отката на предыдущий шаг
 {
     Q_OBJECT
 public:
@@ -22,7 +22,7 @@ signals:
 
 };
 
-class Program_name_widget : public QWidget
+class Program_name_widget : public QWidget                      // виджет названия программы
 {
     Q_OBJECT
 public:

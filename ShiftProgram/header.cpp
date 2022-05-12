@@ -31,7 +31,7 @@ void Back_button::paintEvent(QPaintEvent *ev)
 
 Program_name_widget::Program_name_widget(QWidget* parent): QWidget(parent)
 {
-    setSizePolicy(QSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed));
+    setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
     setWindowFlags(Qt::SplashScreen);
 }
 

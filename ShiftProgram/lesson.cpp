@@ -6,14 +6,18 @@ Lesson::Lesson(QString teacher, QString lesson_name, QString lesson_type,
                QString audience, QWidget *parent) : QFrame(parent), teacher(teacher), lesson_name(lesson_name),
                                                     lesson_type(lesson_type), audience(audience)
 {
-    isActive = 0;
+    isActive = false;
 
     setAutoFillBackground(true);
-    setSizePolicy(QSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed));
+    setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
     setWindowFlags(Qt::SplashScreen);                                   // для того, чтобы виджет не имел стандарной рамки оккошка
 
     resize(1000, 80);
-    setMaximumSize(1000, 80);
+    //setMaximumSize(1000, 80);
+
+    QFontMetrics metrics(QFont("Franklin Gothic Book", 30));
+    int min_width = metrics.width(lesson_name + " " + "(" + teacher + ", " + audience + ")");
+    setMinimumSize(1.2*min_width, 80);
 
     QPalette pal = this->palette();
     pal.setBrush(this->backgroundRole(),QBrush(lesson_background_color()));
@@ -25,7 +29,7 @@ void Lesson::paintEvent(QPaintEvent *ev)
 {
     QPainter p(this);
 
-    p.setFont(QFont("Franklin Gothic Book", 30));
+    p.setFont(QFont("Franklin Gothic Book", 28));
 
     p.drawText(QRect(0,0,this->width() / 2, this->height()), Qt::AlignRight | Qt::AlignVCenter, lesson_name + " ");
 
@@ -91,10 +95,11 @@ Time_of_the_Lesson::Time_of_the_Lesson(int day, int number,QWidget *parent) : QW
 
     setAutoFillBackground(true);
     setWindowFlags(Qt::SplashScreen);
-    setSizePolicy(QSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred));
+    setSizePolicy(QSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed));
 
     resize(280, 80);
     setMaximumSize(280, 80);
+    setMinimumSize(280,80);
 
     QPalette pal = this->palette();
     pal.setBrush(this->backgroundRole(), QBrush(QColor(204, 205, 204)));
@@ -142,4 +147,61 @@ void Time_of_the_Lesson::paintEvent(QPaintEvent *ev)
     QRect widget_rect = QRect(0, 0, this->width(), this->height() + 5);
 
     p.drawText(widget_rect, Qt::AlignVCenter | Qt::AlignHCenter, get_time_bounds());
+}
+
+//---------------------------Week_Widget_View-------------------------------------------
+
+Week_Widget_View::Week_Widget_View(short day_number, QWidget *parent) : QFrame(parent), day_number(day_number)
+{
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+    QFile styles(":/styles/StyleSheets/Week_Widget_View.qss");
+    styles.open(QFile::ReadOnly);
+    QString style_string = styles.readAll();
+    setStyleSheet(style_string);
+
+    QFontMetrics metrics(QFont("Franklin Gothic Book", 24));
+    int min_width = metrics.width("Воскресенье");
+    setMinimumWidth(1.2*min_width);
+}
+
+QSize Week_Widget_View::sizeHint() const
+{
+    return size();
+}
+
+void Week_Widget_View::paintEvent(QPaintEvent *ev)
+{
+    QPainter p(this);
+
+    p.setFont(QFont("Franklin Gothic Book", 30));
+
+    p.drawText(this->rect(),Qt::AlignCenter, get_day_name());
+}
+
+QString Week_Widget_View::get_day_name()
+{
+    switch (day_number) {
+    case 1:
+        return "Понедельник";
+        break;
+    case 2:
+        return "Вторник";
+        break;
+    case 3:
+        return "Среда";
+        break;
+    case 4:
+        return "Четверг";
+        break;
+    case 5:
+        return "Пятница";
+        break;
+    case 6:
+        return "Суббота";
+        break;
+    case 7:
+        return "Воскресенье";
+        break;
+    }
 }

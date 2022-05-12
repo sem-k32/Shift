@@ -12,11 +12,13 @@ SOURCES += \
     header.cpp \
     lesson.cpp \
     main.cpp \
+    step_view.cpp \
     widget.cpp
 
 HEADERS += \
     header.h \
     lesson.h \
+    step_view.h \
     widget.h
 
 # Default rules for deployment.

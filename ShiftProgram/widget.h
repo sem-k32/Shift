@@ -4,14 +4,21 @@
 #include <QtWidgets>
 #include "header.h"
 #include "lesson.h"
+#include "step_view.h"
 //#include библиотеки ядра
 
-class Widget : public QWidget
+class MainWindow : public QFrame
 {
     Q_OBJECT
 
 public:
-    Widget(QString group_number = "B05-007",QWidget *parent = nullptr);
-    ~Widget();
+    MainWindow(QString group_number = "B05-007",QWidget *parent = nullptr);
+    ~MainWindow();
+protected:
+
+private:
+
+signals:
+
 };
 #endif // WIDGET_H

@@ -2,4 +2,7 @@
     <qresource prefix="/img">
         <file>images/back-icon.png</file>
     </qresource>
+    <qresource prefix="/styles">
+        <file>StyleSheets/Week_Widget_View.qss</file>
+    </qresource>
 </RCC>
