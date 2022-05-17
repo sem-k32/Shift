@@ -3,6 +3,9 @@
 MainWindow::MainWindow(QString group_number, QWidget *parent)
     : QFrame(parent)
 {
+    setAutoFillBackground(true);
+    setWindowFlags(Qt::SplashScreen);
+
     //задаю логику layouts
     QVBoxLayout* main_layer = new QVBoxLayout();
 
@@ -15,25 +18,34 @@ MainWindow::MainWindow(QString group_number, QWidget *parent)
     QHBoxLayout* main_body = new QHBoxLayout();
 
     main_layer->addLayout(header_layout);
+    main_layer->addSpacing(10);
     main_layer->addLayout(main_body);
+    main_layer->addStretch(1000);
 
     QVBoxLayout* working_area = new QVBoxLayout();                      // нетехнический слой
 
     Step_View* step_widget = new Step_View();                           // создаём виджета показа шага, пояснительную надпись и кнопку
-                                                                        //                                                       "далее"
+    step_widget->setStyleSheet("QLabel{font-family: 'Sylfaen'; font-size: 30px;}");
+                                                                        // "далее"
     QLabel* hint_first_step = new QLabel();
-    hint_first_step->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred));
+    hint_first_step->setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding));
     hint_first_step->setMinimumWidth(280);
     hint_first_step->setMaximumWidth(350);
+    hint_first_step->setMaximumHeight(100);
+    hint_first_step->setStyleSheet("QLabel{font-family: 'Sylfaen'; font-size: 24px;}");
+    hint_first_step->setWordWrap(true);
+    hint_first_step->setAlignment(Qt::AlignCenter);
     hint_first_step->setText("Щёлкни по тем предметам, которые ты хочешь изменить");
 
     QPushButton* next_step_button = new QPushButton();
     next_step_button->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
+    next_step_button->setStyleSheet("QPushButton{font-family: 'Franklin Gothic Medium'; font-size: 24px;}");
     next_step_button->setText("Далее");
 
     working_area->addWidget(step_widget);
     working_area->addWidget(hint_first_step);
-    working_area->addWidget(next_step_button);
+    working_area->addWidget(next_step_button, 0, Qt::AlignCenter);
+    working_area->addStretch(1000);
 
     QVBoxLayout* general_shedule = new QVBoxLayout();
 
@@ -47,13 +59,13 @@ MainWindow::MainWindow(QString group_number, QWidget *parent)
             QHBoxLayout* time_and_subject_layout = new QHBoxLayout();
 
             // заполнение данными через функцию ядра
-            Lesson* cur_lesson = new Lesson();
+            Lesson* cur_lesson = new Lesson("Teacher", "Lesson name", "sem", "321");
             Time_of_the_Lesson* cur_lesson_time = new Time_of_the_Lesson(i+1, j+1);
 
             // заполнение данными через функцию ядра
 
-            time_and_subject_layout->addWidget(cur_lesson);
             time_and_subject_layout->addWidget(cur_lesson_time);
+            time_and_subject_layout->addWidget(cur_lesson);
 
             general_shedule->addLayout(time_and_subject_layout);
         }
@@ -62,7 +74,7 @@ MainWindow::MainWindow(QString group_number, QWidget *parent)
     main_body->addLayout(working_area);
     main_body->addLayout(general_shedule);
 
-
+    setLayout(main_layer);
 }
 
 MainWindow::~MainWindow()

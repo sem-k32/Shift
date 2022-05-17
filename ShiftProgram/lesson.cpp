@@ -117,19 +117,19 @@ QSize Time_of_the_Lesson::sizeHint() const
 QString Time_of_the_Lesson::get_time_bounds() const
 {
     switch (number_of_lesson) {
-    case 0:
-        return QString("9:00-10:25");
     case 1:
-        return QString("10:45-12:10");
+        return QString("9:00-10:25");
     case 2:
-        return QString("12:20-13:45");
+        return QString("10:45-12:10");
     case 3:
-        return QString("13:55-15:20");
+        return QString("12:20-13:45");
     case 4:
-        return QString("15:30-16:55");
+        return QString("13:55-15:20");
     case 5:
-        return QString("17:05-18:30");
+        return QString("15:30-16:55");
     case 6:
+        return QString("17:05-18:30");
+    case 7:
         return QString("18:35-20:00");
     default:
         break;
