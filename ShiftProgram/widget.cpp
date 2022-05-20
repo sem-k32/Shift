@@ -35,7 +35,7 @@ MainWindow::MainWindow(QString group_number, QWidget *parent)
     hint_first_step->setStyleSheet("QLabel{font-family: 'Sylfaen'; font-size: 24px;}");
     hint_first_step->setWordWrap(true);
     hint_first_step->setAlignment(Qt::AlignCenter);
-    hint_first_step->setText("Щёлкни по тем предметам, которые ты хочешь изменить");
+    hint_first_step->setText("Щёлкни по тем предметам, которые ты не хочешь менять");
 
     QPushButton* next_step_button = new QPushButton();
     next_step_button->setSizePolicy(QSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed));
@@ -59,7 +59,7 @@ MainWindow::MainWindow(QString group_number, QWidget *parent)
             QHBoxLayout* time_and_subject_layout = new QHBoxLayout();
 
             // заполнение данными через функцию ядра
-            Lesson* cur_lesson = new Lesson("Teacher", "Lesson name", "sem", "321");
+            Lesson_View* cur_lesson = new Lesson_View(Lesson("Teacher", "Lesson name", "sem", "321", i+1, j+1));
             Time_of_the_Lesson* cur_lesson_time = new Time_of_the_Lesson(i+1, j+1);
 
             // заполнение данными через функцию ядра

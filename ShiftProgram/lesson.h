@@ -3,30 +3,46 @@
 
 #include <QtWidgets>
 
-class Lesson : public QFrame                                // виджет строки урока
+class Lesson{                                               // класс для урока
+public:
+    Lesson(QString teacher, QString lesson_name, QString lesson_type, QString audience, int day, int num) : teacher(teacher), lesson_name(lesson_name),
+        lesson_type(lesson_type), audience(audience), day(day), number(num)
+    {}
+    ~Lesson() = default;
+
+    QString teacher;                                        // параметры урока
+    QString lesson_name;
+    QString lesson_type;
+    QString audience;
+    int day;                                                // день недели урока и номер пары
+    int number;
+};
+
+class Lesson_View : public QFrame                           // виджет строки урока
 {
     Q_OBJECT
 public:
-    explicit Lesson(QString teacher, QString lesson_name, QString lesson_type, QString audience, QWidget *parent = nullptr);
+    explicit Lesson_View(Lesson les, QWidget *parent = nullptr);
 
     QSize sizeHint() const override;
 protected:
     void paintEvent(QPaintEvent* ev) override;              // отображение строки
 
-    void mousePressEvent(QMouseEvent* ev) override;         // по щелчку добавляем урок в список на замену (отправка сигнала)
+    void mousePressEvent(QMouseEvent* ev) override;         // по щелчку добавляем урок в список на замену/ в список неизменяемых
+                                                            // (отправка сигнала)
 
 private:
-    QString teacher;                                        // параметры урока
-    QString lesson_name;
-    QString lesson_type;
-    QString audience;
+    Lesson lesson;                                          // урок, соответствующий отображению
 
+    short step_number;                                      // номер шага; нужен для правильного поведения при клике
+
+    bool isUnchangable;                                     // флаг, является ли данный урок неизменяемым для студента
     bool isActive;                                          // флаг, отвечающий за то, выбран ли данный урок на замену или нет
 
-    QColor lesson_background_color() const;                 // разный цвет в зависимости от типа урока
+    QString lesson_background_color() const;                 // разный цвет в зависимости от типа урока
 
 signals:
-    void clicked(bool newState);
+    void clicked(bool newState, int day, int num);
 };
 
 class Time_of_the_Lesson: public QWidget                    // виджет времени урока

@@ -2,11 +2,11 @@
 
 //---------------------------Lesson-------------------------------------------
 
-Lesson::Lesson(QString teacher, QString lesson_name, QString lesson_type,
-               QString audience, QWidget *parent) : QFrame(parent), teacher(teacher), lesson_name(lesson_name),
-                                                    lesson_type(lesson_type), audience(audience)
+Lesson_View::Lesson_View(Lesson les, QWidget *parent) : QFrame(parent), lesson(les)
 {
     isActive = false;
+    isUnchangable = false;
+    step_number = 1;
 
     setAutoFillBackground(true);
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
@@ -16,71 +16,98 @@ Lesson::Lesson(QString teacher, QString lesson_name, QString lesson_type,
     //setMaximumSize(1000, 80);
 
     QFontMetrics metrics(QFont("Franklin Gothic Book", 30));
-    int min_width = metrics.width(lesson_name + " " + "(" + teacher + ", " + audience + ")");
+    int min_width = metrics.width(les.lesson_name + " " + "(" + les.teacher + ", " + les.audience + ")");
     setMinimumSize(1.2*min_width, 80);
 
-    QPalette pal = this->palette();
-    pal.setBrush(this->backgroundRole(),QBrush(lesson_background_color()));
-
-    setPalette(pal);
+    setStyleSheet("QFrame {border-radius: 7px; background-color: " + lesson_background_color() + ";}");
 }
 
-void Lesson::paintEvent(QPaintEvent *ev)
+void Lesson_View::paintEvent(QPaintEvent *ev)
 {
     QPainter p(this);
 
     p.setFont(QFont("Franklin Gothic Book", 28));
 
-    p.drawText(QRect(0,0,this->width() / 2, this->height()), Qt::AlignRight | Qt::AlignVCenter, lesson_name + " ");
+    p.drawText(QRect(0,0,this->width() / 2, this->height()), Qt::AlignRight | Qt::AlignVCenter, lesson.lesson_name + " ");
 
     p.setFont(QFont("Trebuchet MS", 24));
 
     p.drawText(QRect(this->width() / 2,0,this->width() / 2, this->height()),Qt::AlignVCenter | Qt::AlignLeft,
-                                                                            "(" + teacher + ", " + audience + ")");
+                                                                            "(" + lesson.teacher + ", " + lesson.audience + ")");
 }
 
-QSize Lesson::sizeHint() const
+QSize Lesson_View::sizeHint() const
 {
     QFontMetrics m1(QFont("Franklin Gothic Book", 30));
     QFontMetrics m2(QFont("Trebuchet MS", 24));
 
-    int text_width = m1.width(lesson_name + " ") + m2.width("(" + teacher + " " + audience + ")");
+    int text_width = m1.width(lesson.lesson_name + " ") + m2.width("(" + lesson.teacher + " " + lesson.audience + ")");
 
     return QSize(1.2*text_width, 80);
 }
 
-void Lesson::mousePressEvent(QMouseEvent *ev)
+void Lesson_View::mousePressEvent(QMouseEvent *ev)
 {
-    if(!isActive)                                   // была неактивна
-    {
-        isActive = 1;
+    switch (step_number) {
+    case 1:
+        if(!isUnchangable)
+        {
+            isUnchangable = 1;
 
-        this->setStyleSheet("QFrame {border-width: 3px;border-color: red}");
+            this->setStyleSheet("QFrame {border-width: 5px;border-color: indigo; border-style: solid; "
+"                                       border-radius: 7px; background-color: " + lesson_background_color() + ";}");
 
-        emit clicked(isActive);
+            emit clicked(isUnchangable, lesson.day, lesson.number);
+        }
+        else {
+            isUnchangable = 0;
+
+            this->setStyleSheet("QFrame {border-width: 0px; border-radius: 7px; "
+"                                       background-color: " + lesson_background_color() + ";}");
+
+            emit clicked(isUnchangable, lesson.day, lesson.number);
+        }
+
+        break;
+    case 2:
+        if(!isActive)                                   // была неактивна
+        {
+            isActive = 1;
+
+            this->setStyleSheet("QFrame {border-width: 3px;border-color: red; border-radius: 7px;"
+"                                        background-color: " + lesson_background_color() + ";}");
+
+            emit clicked(isActive, lesson.day, lesson.number);
+        }
+        else {                                          // была активна
+            isActive = 0;
+
+            this->setStyleSheet("QFrame {border-width: 0px; border-radius: 7px;"
+"                                        background-color: " + lesson_background_color() + ";}");
+
+            emit clicked(isActive, lesson.day, lesson.number);
+        }
+
+        break;
+    default:
+        break;
     }
-    else {                                          // была активна
-        isActive = 0;
 
-        this->setStyleSheet("QFrame {border-width: 0px;}");
-
-        emit clicked(isActive);
-    }
 }
 
-QColor Lesson::lesson_background_color() const
+QString Lesson_View::lesson_background_color() const
 {
-    if(lesson_type == "sem")
+    if(lesson.lesson_type == "sem")
     {
-        return QColor("#99ccff");
+        return "#99ccff";
     }
-    if(lesson_type == "lab")
+    if(lesson.lesson_type == "lab")
     {
-        return QColor("#ffff99");
+        return "#ffff99";
     }
-    if(lesson_type == "lec")
+    if(lesson.lesson_type == "lec")
     {
-        return QColor("#ff9999");
+        return "#ff9999";
     }
 }
 
@@ -105,6 +132,7 @@ Time_of_the_Lesson::Time_of_the_Lesson(int day, int number,QWidget *parent) : QW
     pal.setBrush(this->backgroundRole(), QBrush(QColor(204, 205, 204)));
 
     setPalette(pal);
+    setStyleSheet("QFrame {boder-radius: 5px;}");
 }
 
 QSize Time_of_the_Lesson::sizeHint() const

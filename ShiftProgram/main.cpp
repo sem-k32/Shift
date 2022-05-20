@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
     QScrollArea main_window_view;
     main_window_view.setMinimumWidth(1400);
     main_window_view.setMinimumHeight(400);
+    main_window_view.resize(1400, 800);
     main_window_view.setWidgetResizable(true);
     main_window_view.setWidget(main_window);
 
