@@ -5,6 +5,7 @@
 #include "header.h"
 #include "lesson.h"
 #include "step_view.h"
+#include <set>
 //#include библиотеки ядра
 
 class MainWindow : public QFrame
@@ -14,9 +15,13 @@ class MainWindow : public QFrame
 public:
     MainWindow(QString group_number = "B05-007",QWidget *parent = nullptr);
     ~MainWindow();
+
+    // slots
+    void manage_unchanching_list(int day, int num);                             // добавление/удаление урока в множестве неизменяемых
 protected:
 
 private:
+    std::set<std::pair<short, short>> unchanging_lessons;                       // множество неизменяемых предметов
 
 signals:
 

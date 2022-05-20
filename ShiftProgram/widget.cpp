@@ -58,11 +58,25 @@ MainWindow::MainWindow(QString group_number, QWidget *parent)
         for (int j = 0; j < 7; ++j) {
             QHBoxLayout* time_and_subject_layout = new QHBoxLayout();
 
-            // заполнение данными через функцию ядра
-            Lesson_View* cur_lesson = new Lesson_View(Lesson("Teacher", "Lesson name", "sem", "321", i+1, j+1));
+            // заполнение данными через функцию ядра (пока нет)
+            Lesson_View* cur_lesson;
+
+            if(j % 3 == 0)
+            {
+                cur_lesson = new Lesson_View(Lesson("Teacher", "Lesson name", "sem", "321", i+1, j+1));
+            }
+            else if(j % 3 == 1)
+            {
+                cur_lesson = new Lesson_View(Lesson("Teacher", "Lab name", "lab", "132", i+1, j+1));
+            }
+            else {
+                cur_lesson = new Lesson_View(Lesson("Teacher", "Lecture name", "lec", "213", i+1, j+1));
+            }
+
             Time_of_the_Lesson* cur_lesson_time = new Time_of_the_Lesson(i+1, j+1);
 
-            // заполнение данными через функцию ядра
+            // соединение сигналов для MainWindow
+            QObject::connect(cur_lesson, &Lesson_View::clicked_unchangable, this, &MainWindow::manage_unchanching_list);
 
             time_and_subject_layout->addWidget(cur_lesson_time);
             time_and_subject_layout->addWidget(cur_lesson);
@@ -79,5 +93,16 @@ MainWindow::MainWindow(QString group_number, QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::manage_unchanching_list(int day, int num)
+{
+    if(unchanging_lessons.count(std::make_pair(day, num)))
+    {
+        unchanging_lessons.erase(std::make_pair(day, num));
+    }
+    else {
+        unchanging_lessons.insert(std::make_pair(day, num));
+    }
 }
 

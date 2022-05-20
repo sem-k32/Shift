@@ -29,23 +29,27 @@ protected:
     void paintEvent(QPaintEvent* ev) override;              // отображение строки
 
     void mousePressEvent(QMouseEvent* ev) override;         // по щелчку добавляем урок в список на замену/ в список неизменяемых
-                                                            // (отправка сигнала)
+    // (отправка сигнала)
 
 private:
     Lesson lesson;                                          // урок, соответствующий отображению
 
     short step_number;                                      // номер шага; нужен для правильного поведения при клике
 
-    bool isUnchangable;                                     // флаг, является ли данный урок неизменяемым для студента
-    bool isActive;                                          // флаг, отвечающий за то, выбран ли данный урок на замену или нет
+    bool is_unchangable;                                    // флаг, является ли данный урок неизменяемым для студента
+    bool is_active;                                         // флаг, отвечающий за то, выбран ли данный урок на замену или нет
 
-    QString lesson_background_color() const;                 // разный цвет в зависимости от типа урока
+    QString head_stylesheet;                                // строка основной части стиля для виджета, будет дополняться при необходимости
+
+    QString lesson_background_color() const;                // разный цвет в зависимости от типа урока
 
 signals:
-    void clicked(bool newState, int day, int num);
+    void clicked_unchangable(int day, int num);             // сигнал для добавление в список неизменных уроков
+
+    void clicked_toChange(int day, int num);                // сигнал для добавления в список изменяемых предметов
 };
 
-class Time_of_the_Lesson: public QWidget                    // виджет времени урока
+class Time_of_the_Lesson: public QFrame                    // виджет времени урока
 {
     Q_OBJECT
 public:

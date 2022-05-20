@@ -4,13 +4,14 @@
 
 Lesson_View::Lesson_View(Lesson les, QWidget *parent) : QFrame(parent), lesson(les)
 {
-    isActive = false;
-    isUnchangable = false;
+    is_active = false;
+    is_unchangable = false;
     step_number = 1;
+    head_stylesheet = "QFrame {border-radius: 7px; background-color: " + lesson_background_color() + "; ";
 
     setAutoFillBackground(true);
     setSizePolicy(QSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed));
-    setWindowFlags(Qt::SplashScreen);                                   // для того, чтобы виджет не имел стандарной рамки оккошка
+    setWindowFlags(Qt::SplashScreen);                                       // для того, чтобы виджет не имел стандарной рамки оккошка
 
     resize(1000, 80);
     //setMaximumSize(1000, 80);
@@ -19,7 +20,7 @@ Lesson_View::Lesson_View(Lesson les, QWidget *parent) : QFrame(parent), lesson(l
     int min_width = metrics.width(les.lesson_name + " " + "(" + les.teacher + ", " + les.audience + ")");
     setMinimumSize(1.2*min_width, 80);
 
-    setStyleSheet("QFrame {border-radius: 7px; background-color: " + lesson_background_color() + ";}");
+    setStyleSheet(head_stylesheet + "}");
 }
 
 void Lesson_View::paintEvent(QPaintEvent *ev)
@@ -33,7 +34,7 @@ void Lesson_View::paintEvent(QPaintEvent *ev)
     p.setFont(QFont("Trebuchet MS", 24));
 
     p.drawText(QRect(this->width() / 2,0,this->width() / 2, this->height()),Qt::AlignVCenter | Qt::AlignLeft,
-                                                                            "(" + lesson.teacher + ", " + lesson.audience + ")");
+               "(" + lesson.teacher + ", " + lesson.audience + ")");
 }
 
 QSize Lesson_View::sizeHint() const
@@ -50,44 +51,34 @@ void Lesson_View::mousePressEvent(QMouseEvent *ev)
 {
     switch (step_number) {
     case 1:
-        if(!isUnchangable)
+        if(!is_unchangable)                                                     // меняем состояние виджета, если предмет должен быть неизменен
         {
-            isUnchangable = 1;
+            is_unchangable = 1;
 
-            this->setStyleSheet("QFrame {border-width: 5px;border-color: indigo; border-style: solid; "
-"                                       border-radius: 7px; background-color: " + lesson_background_color() + ";}");
-
-            emit clicked(isUnchangable, lesson.day, lesson.number);
+            this->setStyleSheet(head_stylesheet + "border-width: 5px;border-color: indigo; border-style: solid; " + "}");
         }
         else {
-            isUnchangable = 0;
+            is_unchangable = 0;
 
-            this->setStyleSheet("QFrame {border-width: 0px; border-radius: 7px; "
-"                                       background-color: " + lesson_background_color() + ";}");
-
-            emit clicked(isUnchangable, lesson.day, lesson.number);
+            this->setStyleSheet(head_stylesheet + "}");
         }
 
+        emit clicked_unchangable(lesson.day, lesson.number);
         break;
     case 2:
-        if(!isActive)                                   // была неактивна
+        if(!is_active)                                   // была неактивна
         {
-            isActive = 1;
+            is_active = 1;
 
-            this->setStyleSheet("QFrame {border-width: 3px;border-color: red; border-radius: 7px;"
-"                                        background-color: " + lesson_background_color() + ";}");
-
-            emit clicked(isActive, lesson.day, lesson.number);
+            // добавить код
         }
         else {                                          // была активна
-            isActive = 0;
+            is_active = 0;
 
-            this->setStyleSheet("QFrame {border-width: 0px; border-radius: 7px;"
-"                                        background-color: " + lesson_background_color() + ";}");
-
-            emit clicked(isActive, lesson.day, lesson.number);
+            // добавить код
         }
 
+        emit clicked_toChange(lesson.day, lesson.number);
         break;
     default:
         break;
@@ -109,13 +100,15 @@ QString Lesson_View::lesson_background_color() const
     {
         return "#ff9999";
     }
+
+    return "#000000";
 }
 
 
 
 //---------------------------Time_of_the_Lesson-------------------------------------------
 
-Time_of_the_Lesson::Time_of_the_Lesson(int day, int number,QWidget *parent) : QWidget(parent)
+Time_of_the_Lesson::Time_of_the_Lesson(int day, int number,QWidget *parent) : QFrame(parent)
 {
     this->day_of_the_week = day;
     this->number_of_lesson = number;
@@ -128,11 +121,7 @@ Time_of_the_Lesson::Time_of_the_Lesson(int day, int number,QWidget *parent) : QW
     setMaximumSize(280, 80);
     setMinimumSize(280,80);
 
-    QPalette pal = this->palette();
-    pal.setBrush(this->backgroundRole(), QBrush(QColor(204, 205, 204)));
-
-    setPalette(pal);
-    setStyleSheet("QFrame {boder-radius: 5px;}");
+    setStyleSheet("QFrame {border-radius: 7px; background-color: rgb(204, 205,204);}");
 }
 
 QSize Time_of_the_Lesson::sizeHint() const
@@ -160,6 +149,7 @@ QString Time_of_the_Lesson::get_time_bounds() const
     case 7:
         return QString("18:35-20:00");
     default:
+        return "???";
         break;
     }
 }
@@ -231,5 +221,7 @@ QString Week_Widget_View::get_day_name()
     case 7:
         return "Воскресенье";
         break;
+    default:
+        return "???";
     }
 }
