@@ -1,4 +1,4 @@
-C:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug/CMakeFiles/great_project.dir
-C:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug/CMakeFiles/MyLibrary.dir
-C:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Кирилл/CLionProjects/Project/Shift/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Кирилл/CLionProjects/Project/Shift/cmake-build-debug/CMakeFiles/great_project.dir
+C:/Users/Кирилл/CLionProjects/Project/Shift/cmake-build-debug/CMakeFiles/MyLibrary.dir
+C:/Users/Кирилл/CLionProjects/Project/Shift/cmake-build-debug/CMakeFiles/rebuild_cache.dir

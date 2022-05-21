@@ -39,13 +39,13 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/Кирилл/CLionProjects/Project/Shift/cmake-build-debug/
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Кирилл\CLionProjects\Shift\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\Кирилл\CLionProjects\Project\Shift\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -60,43 +60,43 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_great_project: phony || CMakeFiles/great_project.dir
 
-build CMakeFiles/great_project.dir/main.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Shift/main.cpp || cmake_object_order_depends_target_great_project
+build CMakeFiles/great_project.dir/main.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/main.cpp || cmake_object_order_depends_target_great_project
   DEP_FILE = CMakeFiles\great_project.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\great_project.dir
   OBJECT_FILE_DIR = CMakeFiles\great_project.dir
 
-build CMakeFiles/great_project.dir/sqlite3.c.obj: C_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Shift/sqlite3.c || cmake_object_order_depends_target_great_project
+build CMakeFiles/great_project.dir/sqlite3.c.obj: C_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/sqlite3.c || cmake_object_order_depends_target_great_project
   DEP_FILE = CMakeFiles\great_project.dir\sqlite3.c.obj.d
   FLAGS = -g
   OBJECT_DIR = CMakeFiles\great_project.dir
   OBJECT_FILE_DIR = CMakeFiles\great_project.dir
 
-build CMakeFiles/great_project.dir/alg_funcs.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Shift/alg_funcs.cpp || cmake_object_order_depends_target_great_project
+build CMakeFiles/great_project.dir/alg_funcs.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/alg_funcs.cpp || cmake_object_order_depends_target_great_project
   DEP_FILE = CMakeFiles\great_project.dir\alg_funcs.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\great_project.dir
   OBJECT_FILE_DIR = CMakeFiles\great_project.dir
 
-build CMakeFiles/great_project.dir/mySelect.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Shift/mySelect.cpp || cmake_object_order_depends_target_great_project
+build CMakeFiles/great_project.dir/mySelect.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/mySelect.cpp || cmake_object_order_depends_target_great_project
   DEP_FILE = CMakeFiles\great_project.dir\mySelect.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\great_project.dir
   OBJECT_FILE_DIR = CMakeFiles\great_project.dir
 
-build CMakeFiles/great_project.dir/myNoSelect.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Shift/myNoSelect.cpp || cmake_object_order_depends_target_great_project
+build CMakeFiles/great_project.dir/myNoSelect.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/myNoSelect.cpp || cmake_object_order_depends_target_great_project
   DEP_FILE = CMakeFiles\great_project.dir\myNoSelect.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\great_project.dir
   OBJECT_FILE_DIR = CMakeFiles\great_project.dir
 
-build CMakeFiles/great_project.dir/alg.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Shift/alg.cpp || cmake_object_order_depends_target_great_project
+build CMakeFiles/great_project.dir/alg.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/alg.cpp || cmake_object_order_depends_target_great_project
   DEP_FILE = CMakeFiles\great_project.dir\alg.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\great_project.dir
   OBJECT_FILE_DIR = CMakeFiles\great_project.dir
 
-build CMakeFiles/great_project.dir/mapSch.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Shift/mapSch.cpp || cmake_object_order_depends_target_great_project
+build CMakeFiles/great_project.dir/mapSch.cpp.obj: CXX_COMPILER__great_project_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/mapSch.cpp || cmake_object_order_depends_target_great_project
   DEP_FILE = CMakeFiles\great_project.dir\mapSch.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\great_project.dir
@@ -129,42 +129,42 @@ build great_project.exe: CXX_EXECUTABLE_LINKER__great_project_Debug CMakeFiles/g
 
 build cmake_object_order_depends_target_MyLibrary: phony || CMakeFiles/MyLibrary.dir
 
-build CMakeFiles/MyLibrary.dir/sqlite3.c.obj: C_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/sqlite3.c || cmake_object_order_depends_target_MyLibrary
+build CMakeFiles/MyLibrary.dir/sqlite3.c.obj: C_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/sqlite3.c || cmake_object_order_depends_target_MyLibrary
   DEFINES = -DMyLibrary_EXPORTS
   DEP_FILE = CMakeFiles\MyLibrary.dir\sqlite3.c.obj.d
   FLAGS = -g
   OBJECT_DIR = CMakeFiles\MyLibrary.dir
   OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
 
-build CMakeFiles/MyLibrary.dir/alg_funcs.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/alg_funcs.cpp || cmake_object_order_depends_target_MyLibrary
+build CMakeFiles/MyLibrary.dir/alg_funcs.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/alg_funcs.cpp || cmake_object_order_depends_target_MyLibrary
   DEFINES = -DMyLibrary_EXPORTS
   DEP_FILE = CMakeFiles\MyLibrary.dir\alg_funcs.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\MyLibrary.dir
   OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
 
-build CMakeFiles/MyLibrary.dir/mySelect.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/mySelect.cpp || cmake_object_order_depends_target_MyLibrary
+build CMakeFiles/MyLibrary.dir/mySelect.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/mySelect.cpp || cmake_object_order_depends_target_MyLibrary
   DEFINES = -DMyLibrary_EXPORTS
   DEP_FILE = CMakeFiles\MyLibrary.dir\mySelect.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\MyLibrary.dir
   OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
 
-build CMakeFiles/MyLibrary.dir/myNoSelect.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/myNoSelect.cpp || cmake_object_order_depends_target_MyLibrary
+build CMakeFiles/MyLibrary.dir/myNoSelect.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/myNoSelect.cpp || cmake_object_order_depends_target_MyLibrary
   DEFINES = -DMyLibrary_EXPORTS
   DEP_FILE = CMakeFiles\MyLibrary.dir\myNoSelect.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\MyLibrary.dir
   OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
 
-build CMakeFiles/MyLibrary.dir/alg.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/alg.cpp || cmake_object_order_depends_target_MyLibrary
+build CMakeFiles/MyLibrary.dir/alg.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/alg.cpp || cmake_object_order_depends_target_MyLibrary
   DEFINES = -DMyLibrary_EXPORTS
   DEP_FILE = CMakeFiles\MyLibrary.dir\alg.cpp.obj.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles\MyLibrary.dir
   OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
 
-build CMakeFiles/MyLibrary.dir/mapSch.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/mapSch.cpp || cmake_object_order_depends_target_MyLibrary
+build CMakeFiles/MyLibrary.dir/mapSch.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Project/Shift/mapSch.cpp || cmake_object_order_depends_target_MyLibrary
   DEFINES = -DMyLibrary_EXPORTS
   DEP_FILE = CMakeFiles\MyLibrary.dir\mapSch.cpp.obj.d
   FLAGS = -g -std=gnu++17
@@ -195,7 +195,7 @@ build libMyLibrary.dll libMyLibrary.dll.a: CXX_SHARED_LIBRARY_LINKER__MyLibrary_
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Кирилл\CLionProjects\Shift\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\Кирилл\CLionProjects\Shift -BC:\Users\Кирилл\CLionProjects\Shift\cmake-build-debug"
+  COMMAND = cmd.exe /C "cd /D C:\Users\Кирилл\CLionProjects\Project\Shift\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\Кирилл\CLionProjects\Project\Shift -BC:\Users\Кирилл\CLionProjects\Project\Shift\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -215,7 +215,7 @@ build great_project: phony great_project.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug
+# Folder: C:/Users/Кирилл/CLionProjects/Project/Shift/cmake-build-debug
 
 build all: phony great_project.exe libMyLibrary.dll
 

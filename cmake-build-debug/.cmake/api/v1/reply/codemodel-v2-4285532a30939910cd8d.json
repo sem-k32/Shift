@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,12 +31,20 @@
 					"name" : "great_project",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 0,
+					"id" : "MyLibrary::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MyLibrary-Debug-61d354666fc70a50034a.json",
+					"name" : "MyLibrary",
+					"projectIndex" : 0
+				},
 				{
 					"directoryIndex" : 0,
 					"id" : "great_project::@6890427a1f51a3e7e1df",
@@ -49,8 +58,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug",
-		"source" : "C:/Users/Кирилл/CLionProjects/Shift"
+		"build" : "C:/Users/Кирилл/CLionProjects/Project/Shift/cmake-build-debug",
+		"source" : "C:/Users/Кирилл/CLionProjects/Project/Shift"
 	},
 	"version" : 
 	{
