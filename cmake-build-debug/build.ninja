@@ -120,6 +120,76 @@ build great_project.exe: CXX_EXECUTABLE_LINKER__great_project_Debug CMakeFiles/g
   TARGET_IMPLIB = libgreat_project.dll.a
   TARGET_PDB = great_project.exe.dbg
 
+# =============================================================================
+# Object build statements for SHARED_LIBRARY target MyLibrary
+
+
+#############################################
+# Order-only phony target for MyLibrary
+
+build cmake_object_order_depends_target_MyLibrary: phony || CMakeFiles/MyLibrary.dir
+
+build CMakeFiles/MyLibrary.dir/sqlite3.c.obj: C_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/sqlite3.c || cmake_object_order_depends_target_MyLibrary
+  DEFINES = -DMyLibrary_EXPORTS
+  DEP_FILE = CMakeFiles\MyLibrary.dir\sqlite3.c.obj.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles\MyLibrary.dir
+  OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
+
+build CMakeFiles/MyLibrary.dir/alg_funcs.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/alg_funcs.cpp || cmake_object_order_depends_target_MyLibrary
+  DEFINES = -DMyLibrary_EXPORTS
+  DEP_FILE = CMakeFiles\MyLibrary.dir\alg_funcs.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles\MyLibrary.dir
+  OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
+
+build CMakeFiles/MyLibrary.dir/mySelect.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/mySelect.cpp || cmake_object_order_depends_target_MyLibrary
+  DEFINES = -DMyLibrary_EXPORTS
+  DEP_FILE = CMakeFiles\MyLibrary.dir\mySelect.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles\MyLibrary.dir
+  OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
+
+build CMakeFiles/MyLibrary.dir/myNoSelect.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/myNoSelect.cpp || cmake_object_order_depends_target_MyLibrary
+  DEFINES = -DMyLibrary_EXPORTS
+  DEP_FILE = CMakeFiles\MyLibrary.dir\myNoSelect.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles\MyLibrary.dir
+  OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
+
+build CMakeFiles/MyLibrary.dir/alg.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/alg.cpp || cmake_object_order_depends_target_MyLibrary
+  DEFINES = -DMyLibrary_EXPORTS
+  DEP_FILE = CMakeFiles\MyLibrary.dir\alg.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles\MyLibrary.dir
+  OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
+
+build CMakeFiles/MyLibrary.dir/mapSch.cpp.obj: CXX_COMPILER__MyLibrary_Debug C$:/Users/Кирилл/CLionProjects/Shift/mapSch.cpp || cmake_object_order_depends_target_MyLibrary
+  DEFINES = -DMyLibrary_EXPORTS
+  DEP_FILE = CMakeFiles\MyLibrary.dir\mapSch.cpp.obj.d
+  FLAGS = -g -std=gnu++17
+  OBJECT_DIR = CMakeFiles\MyLibrary.dir
+  OBJECT_FILE_DIR = CMakeFiles\MyLibrary.dir
+
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target MyLibrary
+
+
+#############################################
+# Link the shared library libMyLibrary.dll
+
+build libMyLibrary.dll libMyLibrary.dll.a: CXX_SHARED_LIBRARY_LINKER__MyLibrary_Debug CMakeFiles/MyLibrary.dir/sqlite3.c.obj CMakeFiles/MyLibrary.dir/alg_funcs.cpp.obj CMakeFiles/MyLibrary.dir/mySelect.cpp.obj CMakeFiles/MyLibrary.dir/myNoSelect.cpp.obj CMakeFiles/MyLibrary.dir/alg.cpp.obj CMakeFiles/MyLibrary.dir/mapSch.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\MyLibrary.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  RESTAT = 1
+  TARGET_FILE = libMyLibrary.dll
+  TARGET_IMPLIB = libMyLibrary.dll.a
+  TARGET_PDB = MyLibrary.dll.dbg
+
 
 #############################################
 # Utility command for rebuild_cache
@@ -135,6 +205,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build MyLibrary: phony libMyLibrary.dll
+
 build great_project: phony great_project.exe
 
 # =============================================================================
@@ -145,7 +217,7 @@ build great_project: phony great_project.exe
 #############################################
 # Folder: C:/Users/Кирилл/CLionProjects/Shift/cmake-build-debug
 
-build all: phony great_project.exe
+build all: phony great_project.exe libMyLibrary.dll
 
 # =============================================================================
 # Built-in targets
