@@ -1,7 +1,7 @@
 #include "widget.h"
 
 MainWindow::MainWindow(QString group_number, QWidget *parent)
-    : QFrame(parent)
+    : QFrame(parent), group_name(group_number)
 {
     setAutoFillBackground(true);
     setWindowFlags(Qt::SplashScreen);

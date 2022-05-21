@@ -13,7 +13,7 @@ class MainWindow : public QFrame
     Q_OBJECT
 
 public:
-    MainWindow(QString group_number = "B05-007",QWidget *parent = nullptr);
+    MainWindow(QString group_number = "Б05-007",QWidget *parent = nullptr);
     ~MainWindow();
 
     // slots
@@ -21,6 +21,8 @@ public:
 protected:
 
 private:
+    QString group_name;                                                         // группа студента
+
     std::set<std::pair<short, short>> unchanging_lessons;                       // множество неизменяемых предметов
 
 signals:

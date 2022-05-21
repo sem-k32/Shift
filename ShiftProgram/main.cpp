@@ -1,3 +1,4 @@
+#include "group_name_input.h"
 #include "widget.h"
 
 #include <QApplication>
@@ -6,7 +7,20 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    MainWindow* main_window = new MainWindow();
+    Group_Name_Input* group_input = new Group_Name_Input();
+
+    if(group_input->exec() == QDialog::Accepted)
+    {
+        group_input->hide();
+    }
+    else {
+        a.exit(-1);
+    }
+
+    QString group_name = group_input->get_group_name();
+    delete group_input;
+
+    MainWindow* main_window = new MainWindow(group_name);
 
     QScrollArea main_window_view;
     main_window_view.setMinimumWidth(1400);
