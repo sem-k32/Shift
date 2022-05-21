@@ -1,0 +1,43 @@
+//
+// Created by Кирилл on 29.04.2022.
+//
+
+#include "alg.h"
+
+std::vector<std::vector<int>> tree;
+
+std::vector<std::vector<std::set<int>>> alg(std::vector<A>& vec, const std::string& yourGr, std::vector<std::string>& noShift) {
+    std::vector<std::pair<std::string, std::string>> v;
+    mySelect("SELECT COUNT(1) FROM SCHEDULE", v);
+    int n = atof(v[0].second.c_str());   // записали в n кол-во записей в таблице SCHEDULE
+
+    std::vector<std::vector<std::set<int>>> mt(n, std::vector<std::set<int>>(n));
+    // Создали матрицу размера n на n, где n это кол-во записей в таблице расписания(SCHEDULE), а вершинами(Node)
+    // в нашем графе и будут, грубо говоря, эти записи.
+    // Цвет 0 -- значит ребро не покрашено.
+
+
+    return mt;
+}
+
+std::vector<Node> myDFS(Node u, const std::string &yourGr, std::vector<std::string> &noShift, Node uf) {
+    if(check(yourGr, u.day, u.pairID).empty() == 0) {    // если у моей группы в день u.day и пару u.pairID есть пара,
+        // то проверяем, разрешено ли поменять соответствующий этой паре предмет
+        std::string subj = check(yourGr, u.day, u.pairID)[0].second;    // здесь получаем какой предмет в эту пару
+        int i = 0;
+        for(std::string x : noShift) {
+            if(subj == x) {
+                // че то дописать нужно здесь
+                break;
+            }
+            ++i;
+        }
+       if(i == noShift.size()) {  // т.е. если subj не совпал ни с кем из noShift (значит разрешено)
+           noShift.push_back(u.subj);      // т.е. уже
+           for(each Node: Node.предмет == subj) {
+               mydf
+           }
+       }
+    }
+
+}

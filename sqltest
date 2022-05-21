@@ -1,0 +1,38 @@
+CREATE TABLE TEACHERS(
+                         T_ID     INT PRIMARY  KEY     NOT NULL,
+                         NAME              TEXT    NOT NULL,
+                         EASINESS          TEXT,
+                         WIKIMIPT_LINK     TEXT );
+
+
+
+CREATE TABLE SUBJECT(
+                        SUBJ_ID     INT PRIMARY  KEY     NOT NULL,
+                        NAME        TEXT   NOT NULL);
+
+
+
+CREATE TABLE PAIRS(
+              PAIR_ID      INT     PRIMARY  KEY     NOT NULL,
+              START_TIME   TEXT   NOT NULL,
+              END_TIME     TEXT   NOT NULL);
+
+  CREATE TABLE SCHEDULE(
+                      ID      INT     PRIMARY  KEY     NOT NULL,
+                      GR_NAME  TEXT  NOT NULL,
+                      DAY   TEXT   NOT NULL,
+                      PAIR_ID   INT   NOT NULL,
+                      SUBJECT_ID   INT   NOT NULL,
+                      TEACHER_ID   INT   NOT NULL,
+                      CLASSROOM     TEXT  ,
+                      FOREIGN KEY (PAIR_ID) REFERENCES PAIRS(PAIR_ID),
+                      FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJ_ID),
+                      FOREIGN KEY (TEACHER_ID) REFERENCES TEACHERS(T_ID));
+
+"insert into SCHEDULE values (1, 'B05-001', 'Monday', 3, 2, 1, '318gk')";
+"insert into SCHEDULE values (2, 'B05-001', 'Monday', 4, 1, 2, '415gk')";
+"insert into SCHEDULE values (3, 'B05-002', 'Friday', 1, 2, 2, '320gk')"
+"insert into SCHEDULE values (4, 'B05-001', 'Friday', 1, 4, 4, '426gk')"
+"insert into SCHEDULE values (5, 'B05-002', 'Monday', 3, 3, 4, '419gk')";
+"insert into SCHEDULE values (6, 'B05-001', 'Friday', 2, 3, 1, '417gk')"
+"select subj.NAME as sname, t.NAME as tname from SCHEDULE as sch left join TEACHERS as t on sch.TEACHER_ID = t.T_ID left join SUBJECT as subj on sch.SUBJECT_ID = subj.SUBJ_ID";
